@@ -43,11 +43,12 @@ list(set=set, get=get, setinverse=setinverse, getinverse=getinverse)
 ## This function save
 ## input here is the cache matrix, denoted by c 
 cacheSolve <- function(c, ...) {
+  
   # Get i object with getinverse function
   i <- c$getinverse()
   # If i object is not NULL, the inverse has already been calculated
   if(!is.null(i)) {
-    message("getting cached data.")
+    message("getting cached data: Inverse of matrix was earlier calculated")
     return(i)
   }
   # If i object is NULL, the inverse still has to be calculated
