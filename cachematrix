@@ -1,6 +1,7 @@
 ## The first function "makeCacheMatrix" makes, not surprisingly, a cache matrix of the users input
 ## x should be a square matrix
 
+
 makeCacheMatrix <- function(x) {
   
   # check for input, should be matrix
