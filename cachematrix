@@ -40,7 +40,8 @@ list(set=set, get=get, setinverse=setinverse, getinverse=getinverse)
 
 
 
-## This function save
+## This function calculateds inverse of cache matrix. If inverse is already known, then
+## the funtion gets the inverse instead of calculating it again!
 ## input here is the cache matrix, denoted by c 
 cacheSolve <- function(c, ...) {
   
