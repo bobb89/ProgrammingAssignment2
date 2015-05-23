@@ -1,0 +1,58 @@
+## The first function "makeCacheMatrix" makes, not surprisingly, a cache matrix of the users input
+## x should be a square matrix
+
+makeCacheMatrix <- function(x) {
+  
+  # check for input, should be matrix
+  if(class(x) != "matrix") {
+  stop("the input should be a matrix")        
+}
+  # Inverse of matrix only exist for square matrices
+  else if(dim(x)[1]/dim(x)[2]!= 1){
+  stop("the matrix should be a square matrix") 
+}
+
+# intitalization of i object
+i <- NULL                                
+
+set <- function(y) {            
+  # Search whether there is an existing definition in the parental environment for object x
+  # If so, x is overwritten
+  x <<- y  
+  # Search whether there is an existing definition in the parental environment for object i
+  # If so, i is overwritten
+  i <<- NULL 
+}
+
+# function which simply gets the x matrix. No input required
+get <- function() x  
+
+# function checks existing definition of i in parental environment. Overwrites it with inverse value
+setinverse <- function(inverse) i <<- inverse 
+
+# funtion which simply gets the i value (inverse value). No input required
+getinverse <- function() i
+
+# return list of the four created functions
+list(set=set, get=get, setinverse=setinverse, getinverse=getinverse)
+}
+
+
+
+## This function save
+## input here is the cache matrix, denoted by c 
+cacheSolve <- function(c, ...) {
+  # Get i object with getinverse function
+  i <- c$getinverse()
+  # If i object is not NULL, the inverse has already been calculated
+  if(!is.null(i)) {
+    message("getting cached data.")
+    return(i)
+  }
+  # If i object is NULL, the inverse still has to be calculated
+  data <- c$get()
+  i <- solve(data)
+  # Save inverse
+  c$setinverse(i)
+  i
+}
